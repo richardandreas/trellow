@@ -27,15 +27,20 @@ gem 'bcrypt', '~> 3.1.7'
 
 # Code coverage analysis tool for Ruby
 gem 'simplecov', require: false, group: :test
-
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
+# Helps to remove unnecessary whitespaces from ActiveRecord or ActiveModel attributes
+gem 'auto_strip_attributes', '~> 2.6'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   # Bring the RSpec testing framework to Ruby on Rails as a drop-in alternative to Minitest
-  gem "rspec-rails", "~> 4.0"
+  gem 'rspec-rails', '~> 4.0'
+  # Generate models dor testing
+  gem 'factory_bot_rails', '~> 6.1'
+  # Create random attributes for models
+  gem 'faker', '~> 2.15'
 end
 
 group :development do
@@ -47,6 +52,13 @@ group :development do
   gem 'listen', '~> 3.3'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+end
+
+group :test do
+  # Express expected outcomes on collections of an object in tests
+  gem 'rspec-collection_matchers', '~> 1.2'
+  # Provide RSpec- and Minitest-compatible one-liners to test common Rails functionality
+  gem 'shoulda-matchers', '~> 4.3'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
