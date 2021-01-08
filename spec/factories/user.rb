@@ -2,9 +2,10 @@
 
 FactoryBot.define do
   factory :user do
-    username { Faker::Name.name.gsub('.', '') }
-    email { Faker::Internet.email }
-    password { Faker::Internet.password }
+    username              { Faker::Name.name.gsub('.', '') }
+    email                 { Faker::Internet.email }
+    password              { Faker::Internet.password }
+    password_confirmation { password }
   end
 
   trait :with_invalid_username do
@@ -13,5 +14,9 @@ FactoryBot.define do
 
   trait :with_invalid_email do
     email { Faker::Lorem.word }
+  end
+
+  trait :with_unequal_passwords do
+    password_confirmation { Faker::Internet.password }
   end
 end

@@ -9,11 +9,14 @@
 #   password_confirmation: String
 #
 class User < ApplicationRecord
+  auto_strip_attributes :username, squish: true
+  auto_strip_attributes :email
+
   validates :username,
             presence: true,
             uniqueness: true,
             length: { minimum: 6, maximum: 45 },
-            format: { with: /^[a-zA-Z 0-9]*$/, multiline: true }
+            format: { with: NO_SPECIAL_CHAR_REGEXP, multiline: true }
 
   validates :email,
             presence: true,
@@ -22,10 +25,8 @@ class User < ApplicationRecord
             format: { with: URI::MailTo::EMAIL_REGEXP }
 
   validates :password,
-            presence: true,
-            length: { minimum: 6 }
-
-  auto_strip_attributes :username, squish: true
+            presence: { on: create },
+            length: { minimum: 6 }, if: :password_digest_changed?
 
   has_secure_password
 end

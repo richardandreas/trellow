@@ -10,12 +10,12 @@ module Api
       def index
         @users = User.all
 
-        render json: @users, status: :ok
+        render json: @users, except: :password_digest, status: :ok
       end
 
       # GET /users/1.json
       def show
-        render json: @user, status: :ok
+        render json: @user, except: :password_digest, status: :ok
       end
 
       # POST /users.json
@@ -23,7 +23,7 @@ module Api
         @user = User.new(user_params)
 
         if @user.save
-          render json: @user, status: :created
+          render json: @user, except: :password_digest, status: :created
         else
           render json: @user.errors, status: :unprocessable_entity
         end
@@ -32,7 +32,7 @@ module Api
       # PATCH/PUT /users/1.json
       def update
         if @user.update(user_params)
-          render json: @user, status: :ok
+          render json: @user, except: :password_digest, status: :ok
         else
           render json: @user.errors, status: :unprocessable_entity
         end
@@ -53,7 +53,7 @@ module Api
 
       # Only allow a list of trusted parameters through.
       def user_params
-        params.require(:user).permit(:username, :email, :password, :password_confirmation)
+        params.permit(:username, :email, :password, :password_confirmation)
       end
     end
   end

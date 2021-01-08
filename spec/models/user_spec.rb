@@ -3,9 +3,10 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  let(:valid_user)              { build(:user) }
-  let(:with_invalid_username)   { build(:user, :with_invalid_username) }
-  let(:with_invalid_email)      { build(:user, :with_invalid_email) }
+  let(:valid_user)             { build(:user) }
+  let(:with_invalid_username)  { build(:user, :with_invalid_username) }
+  let(:with_invalid_email)     { build(:user, :with_invalid_email) }
+  let(:with_unequal_passwords) { build(:user, :with_unequal_passwords) }
 
   describe 'valid user' do
     it { expect(valid_user).to be_valid }
@@ -28,15 +29,20 @@ RSpec.describe User, type: :model do
   describe 'other validations' do
     it { expect(with_invalid_username).to have(1).errors_on(:username) }
     it { expect(with_invalid_email).to have(1).errors_on(:email) }
+    it { expect(with_unequal_passwords).to have(1).errors_on(:password_confirmation) }
   end
 
   describe 'auto formatting' do
-    subject do
+    it 'auto trims and splices username on validate' do
       user = described_class.new(**attributes_for(:user), username: '  with  too  many  spaces  ')
       user.validate
-      user
+      expect(user.username).to eq('with too many spaces')
     end
 
-    it { expect(subject.username).to eq('with too many spaces') }
+    it 'auto trims emails on validate' do
+      user = described_class.new(**attributes_for(:user), username: '  email@email.com  ')
+      user.validate
+      expect(user.username).to eq('email@email.com')
+    end
   end
 end

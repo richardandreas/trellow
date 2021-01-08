@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  get 'auth/login'
-
   namespace :api do
     namespace :v1 do
+      post :auth, to: 'auth#login'
+
       resources :users
     end
   end
