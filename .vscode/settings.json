@@ -2,4 +2,5 @@
   "editor.rulers": [120],
   "editor.formatOnSave": true,
   "ruby.format": "rubocop",
+  "ruby.rubocop.configFilePath": ".rubocop.yml",
 }

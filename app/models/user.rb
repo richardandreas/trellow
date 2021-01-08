@@ -1,3 +1,13 @@
+# frozen_string_literal: true
+
+# Application User
+#
+# Attributes
+#   username:              String
+#   email:                 String
+#   password:              String
+#   password_confirmation: String
+#
 class User < ApplicationRecord
   validates :username,
             presence: true,

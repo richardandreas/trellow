@@ -30,7 +30,7 @@ RSpec.describe User, type: :model do
 
   describe 'auto formatting' do
     subject do
-      user = described_class.new(**valid_user.attributes, username: '  with  too  many  spaces  ')
+      user = described_class.new(**attributes_for(:user), username: '  with  too  many  spaces  ')
       user.validate
       user
     end

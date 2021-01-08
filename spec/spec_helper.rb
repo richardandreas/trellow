@@ -15,7 +15,15 @@
 
 require 'simplecov'
 
-SimpleCov.start
+SimpleCov.profiles.define 'custom' do
+  add_filter '/config/'
+  add_filter '/features/'
+  add_filter '/node_modules/'
+  add_filter '/spec/'
+  add_filter '/vendor/'
+end
+
+SimpleCov.start 'custom'
 
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|

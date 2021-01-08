@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Homes", type: :request do
+RSpec.describe "/index", type: :request do
 
   describe "GET /index" do
     before { get "/" }
