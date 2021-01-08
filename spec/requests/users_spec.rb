@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe '/api/v1/users', type: :request do
@@ -23,17 +25,17 @@ RSpec.describe '/api/v1/users', type: :request do
   describe 'POST /create' do
     context 'with valid parameters' do
       it 'creates a new User' do
-        expect {
+        expect do
           post api_v1_users_url, params: { user: valid_attributes }, as: :json
-        }.to change(User, :count).by(1)
+        end.to change(User, :count).by(1)
       end
     end
 
     context 'with invalid parameters' do
       it 'does not create a new User' do
-        expect {
+        expect do
           post api_v1_users_url, params: { user: invalid_attributes }, as: :json
-        }.to change(User, :count).by(0)
+        end.to change(User, :count).by(0)
       end
     end
   end
@@ -62,9 +64,9 @@ RSpec.describe '/api/v1/users', type: :request do
   describe 'DELETE /destroy' do
     it 'destroys the requested user' do
       user = User.create! valid_attributes
-      expect {
+      expect do
         delete api_v1_user_url(user), as: :json
-      }.to change(User, :count).by(-1)
+      end.to change(User, :count).by(-1)
     end
   end
 end

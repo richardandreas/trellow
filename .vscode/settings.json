@@ -1,6 +1,7 @@
 {
   "editor.rulers": [120],
   "editor.formatOnSave": true,
+  "editor.formatOnSaveTimeout": 5000,
   "ruby.format": "rubocop",
   "ruby.rubocop.configFilePath": ".rubocop.yml",
 }
