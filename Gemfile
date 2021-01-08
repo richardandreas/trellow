@@ -33,6 +33,8 @@ gem 'simplecov', require: false, group: :test
 gem 'bootsnap', '>= 1.4.4', require: false
 # Helps to remove unnecessary whitespaces from ActiveRecord or ActiveModel attributes
 gem 'auto_strip_attributes', '~> 2.6'
+# A ruby implementation of the RFC 7519 OAuth JSON Web Token (JWT) standard
+gem 'jwt', '~> 2.2'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

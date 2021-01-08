@@ -6,11 +6,13 @@ RSpec.describe '/api/v1/users', type: :request do
   let(:valid_attributes)   { attributes_for(:user) }
   let(:invalid_attributes) { attributes_for(:user, :with_invalid_username) }
 
+  before { skip_token_auth }
+
   describe 'GET /index' do
     it 'renders a successful response' do
       User.create! valid_attributes
       get api_v1_users_url, as: :json
-      expect(response).to be_successful
+      expect(response).to have_http_status(:ok)
     end
   end
 
@@ -18,7 +20,7 @@ RSpec.describe '/api/v1/users', type: :request do
     it 'renders a successful response' do
       user = User.create! valid_attributes
       get api_v1_user_url(user), as: :json
-      expect(response).to be_successful
+      expect(response).to have_http_status(:ok)
     end
   end
 
@@ -58,7 +60,7 @@ RSpec.describe '/api/v1/users', type: :request do
       it 'renders a successful response (i.e. to display the "edit" template)' do
         user = User.create! valid_attributes
         patch api_v1_user_url(user), params: invalid_attributes, as: :json
-        expect(response).not_to be_successful
+        expect(response).to have_http_status(:unprocessable_entity)
       end
     end
   end
