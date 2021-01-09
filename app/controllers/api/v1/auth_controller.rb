@@ -12,7 +12,7 @@ module Api
 
         if @user&.authenticate(auth_params[:password])
           create_access_token(@user.id)
-          render json: @user, status: :ok
+          render json: @user, except: :password_digest, status: :ok
         else
           render json: { errors: { email: [I18n.t('errors.messages.invalid_auth')] } }, status: :unprocessable_entity
         end
