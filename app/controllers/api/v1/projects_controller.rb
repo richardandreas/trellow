@@ -8,7 +8,7 @@ module Api
 
       # GET /api/v1/projects.json
       def index
-        @projects = @current_user.projects
+        @projects = current_user.projects
 
         render json: @projects, except: :password_digest, status: :ok
       end

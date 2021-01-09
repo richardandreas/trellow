@@ -10,7 +10,8 @@ RSpec.describe '/api/v1/projects', type: :request do
 
   describe 'GET /index' do
     it 'renders a successful response' do
-      Project.create! valid_attributes
+      project = Project.create! valid_attributes
+      allow_any_instance_of(Api::ApiController).to receive(:current_user).and_return(project.user)
       get api_v1_projects_url, as: :json
       expect(response).to have_http_status(:ok)
     end
