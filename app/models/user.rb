@@ -12,6 +12,8 @@ class User < ApplicationRecord
   auto_strip_attributes :username, squish: true
   auto_strip_attributes :email
 
+  has_many :projects, dependent: :destroy
+
   validates :username,
             presence: true,
             uniqueness: true,
