@@ -7,6 +7,7 @@ Rails.application.routes.draw do
       get :auth, to: 'auth#user'
 
       resources :users
+      resources :projects
     end
   end
 

@@ -2,8 +2,8 @@
 
 FactoryBot.define do
   factory :project do
-    user { build(:user) }
-    name { Faker::Lorem.sentence(word_count: 2).gsub('.', '').titleize }
+    user_id     { User.last&.id || create(:user).id }
+    name        { Faker::Lorem.sentence(word_count: 2).gsub('.', '').titleize }
     description { Faker::Lorem.paragraph(sentence_count: 10) }
 
     trait :with_invalid_name do
