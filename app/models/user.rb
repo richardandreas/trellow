@@ -13,6 +13,7 @@ class User < ApplicationRecord
   auto_strip_attributes :email
 
   has_many :projects, dependent: :destroy
+  has_many :sprints, through: :projects
 
   validates :username,
             presence: true,
