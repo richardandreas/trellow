@@ -27,8 +27,8 @@ ActiveRecord::Schema.define(version: 2021_01_09_005816) do
 
   create_table "sprints", force: :cascade do |t|
     t.bigint "project_id", null: false
-    t.date "start_date", null: false
-    t.date "due_date", null: false
+    t.date "start_date"
+    t.date "due_date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["project_id"], name: "index_sprints_on_project_id"

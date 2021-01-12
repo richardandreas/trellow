@@ -13,8 +13,6 @@ RSpec.describe Sprint, type: :model do
 
   describe 'presence validations' do
     it { is_expected.to belong_to(:project) }
-    it { is_expected.to validate_presence_of(:start_date) }
-    it { is_expected.to validate_presence_of(:due_date) }
   end
 
   describe 'other validations' do

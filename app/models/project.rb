@@ -13,7 +13,7 @@ class Project < ApplicationRecord
 
   belongs_to :user
 
-  has_many :sprints
+  has_many :sprints, dependent: :destroy
 
   validates :name,
             presence: true,
