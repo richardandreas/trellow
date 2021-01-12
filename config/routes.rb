@@ -7,7 +7,10 @@ Rails.application.routes.draw do
       get :auth, to: 'auth#user'
 
       resources :users
-      resources :projects
+
+      resources :projects do
+        resources :sprints
+      end
     end
   end
 
