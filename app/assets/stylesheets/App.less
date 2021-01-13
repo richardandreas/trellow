@@ -1,0 +1,77 @@
+/*
+ * Styles for the React App component
+ */
+
+#react-root {
+  height: 100%;
+
+  > * {
+    height: 100%;
+  }
+}
+
+#hamburger {
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 64px;
+  padding: 0 24px;
+  transition: color 0.3s;
+
+  &:hover {
+    color: @primary-color;
+  }
+}
+
+#logo {
+  line-height: 64px;
+  right: 0;
+  padding: 0 24px;
+  position: fixed;
+
+  img {
+    height: 24px;
+    margin-bottom: 6px;
+  }
+}
+
+/* Sets sidebar colors */
+.ant-layout-sider {
+  background-color: #174287;
+
+  ul {
+    background: transparent !important;
+  }
+
+  .ant-menu-item-selected {
+    background-color: #eee2 !important;
+  }
+}
+
+/* Makes the sidebar scroll on overflov */
+.ant-layout-sider-children {
+  max-height: 100%;
+  overflow-y: auto;
+}
+
+/* Fixes header at the top of the page */
+.ant-layout-header {
+  background: none;
+  padding: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+/* Makes the main content section more beautiful */
+.main-content-area {
+  background: #fff;
+  border-radius: @border-radius-base;
+  margin: 64px 16px 0 16px;
+  min-height: 480px;
+  padding: 32px;
+}
+
+/* Centers text in the footer */
+.ant-layout-footer {
+  text-align: center;
+}

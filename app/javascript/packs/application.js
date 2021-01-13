@@ -8,6 +8,8 @@
 // import * as ActiveStorage from "@rails/activestorage"
 // import "channels"
 
+import "antd/lib/style/index.less";
+
 // Rails.start()
 // Turbolinks.start()
 // ActiveStorage.start()
