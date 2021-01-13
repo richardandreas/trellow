@@ -4,7 +4,7 @@ module Api
   module V1
     # Controller responsible for managing application users
     class UsersController < ApiController
-      before_action :set_user, only: %i[show edit update destroy]
+      before_action :set_user, only: %i[show update destroy]
 
       # GET /api/v1/users.json
       def index

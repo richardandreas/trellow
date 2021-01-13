@@ -1,6 +1,11 @@
 # frozen_string_literal: true
 
 # Class responsible for JWT encryption and decryprion
+#
+# Methods
+#   encode: String
+#   decode: Hash
+#
 class JwtService
   ALGORITHM = 'HS256'
 
@@ -14,6 +19,8 @@ class JwtService
     rescue JWT::DecodeError
       nil
     end
+
+    private
 
     def auth_secret
       Rails.application.credentials.secret_key_base[32..64]

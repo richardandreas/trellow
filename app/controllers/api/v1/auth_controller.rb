@@ -19,7 +19,7 @@ module Api
       end
 
       def user
-        render json: @current_user, except: :password_digest, status: :ok
+        render json: current_user, except: :password_digest, status: :ok
       end
 
       private

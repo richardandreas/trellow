@@ -2,6 +2,7 @@ AllCops:
   Exclude:
     - "bin/**/*"
     - "node_modules/**/*"
+    - "db/schema.rb"
 Metrics/ClassLength:
   Exclude:
     - "spec/**/*"

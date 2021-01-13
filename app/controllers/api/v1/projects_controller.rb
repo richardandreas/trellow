@@ -4,11 +4,11 @@ module Api
   module V1
     # Controller responsible for managing users projects
     class ProjectsController < ApiController
-      before_action :set_project, only: %i[show edit update destroy]
+      before_action :set_project, only: %i[show update destroy]
 
       # GET /api/v1/projects.json
       def index
-        @projects = @current_user.projects
+        @projects = current_user.projects
 
         render json: @projects, except: :password_digest, status: :ok
       end
