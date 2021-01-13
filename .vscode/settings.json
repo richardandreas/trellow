@@ -1,7 +1,11 @@
 {
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.rulers": [120],
   "editor.formatOnSave": true,
   "editor.formatOnSaveTimeout": 5000,
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
   "ruby.format": "rubocop",
-  "ruby.rubocop.configFilePath": ".rubocop.yml",
+  "ruby.rubocop.configFilePath": ".rubocop.yml"
 }
