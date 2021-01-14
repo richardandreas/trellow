@@ -7,8 +7,11 @@ module.exports = getStyleRule(/\.less$/i, false, [
       lessOptions: {
         javascriptEnabled: true,
         modifyVars: {
-          "@primary-color": "#209cee",
           "@border-radius-base": "0.25em",
+          "@layout-sider-background": "#174287",
+          "@menu-dark-bg": "#174287",
+          "@menu-dark-item-active-bg": "rgba(255, 255, 255, 0.1)",
+          "@primary-color": "#209cee",
         },
       },
     },
