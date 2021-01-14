@@ -4,7 +4,6 @@ import { MenuUnfoldOutlined, MenuFoldOutlined } from "@ant-design/icons";
 import Sidebar from "./Sidebar";
 import Footer from "./Footer";
 import ProjectView from "../views/ProjectView";
-import "../../assets/stylesheets/App.less";
 
 const App = () => {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(true);
@@ -12,7 +11,7 @@ const App = () => {
   return (
     <Layout>
       <Sidebar collapsed={sidebarCollapsed} />
-      <Layout>
+      <Layout className="main-layout">
         <Layout.Header>
           {React.createElement(
             sidebarCollapsed ? MenuUnfoldOutlined : MenuFoldOutlined,

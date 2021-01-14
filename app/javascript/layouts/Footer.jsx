@@ -3,7 +3,7 @@ import { Layout } from "antd";
 
 function Footer() {
   return (
-    <Layout.Footer>
+    <Layout.Footer className="main-footer">
       <small>
         Trellow 2021 by{" "}
         <a

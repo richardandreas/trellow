@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Layout } from "antd";
 import { Menu } from "antd";
 import {
@@ -8,12 +8,16 @@ import {
 } from "@ant-design/icons";
 
 function Sidebar({ collapsed }) {
+  const [collapsedWidth, setCollapsedWidth] = useState(true);
+
   return (
     <Layout.Sider
-      trigger={null}
-      collapsible
-      collapsed={collapsed}
       breakpoint="lg"
+      collapsed={collapsed}
+      collapsedWidth={collapsedWidth ? "0" : "80"}
+      collapsible
+      onBreakpoint={(broken) => setCollapsedWidth(broken)}
+      trigger={null}
     >
       <div style={{ height: 64 }} />
       <Menu theme="dark" mode="inline" defaultSelectedKeys={["1"]}>

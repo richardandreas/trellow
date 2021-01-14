@@ -5,6 +5,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "../layouts/App";
+import "../../assets/stylesheets/react_index.less";
 
 document.addEventListener("DOMContentLoaded", () => {
   ReactDOM.render(

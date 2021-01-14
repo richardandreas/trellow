@@ -1,5 +1,5 @@
 /*
- * Styles for the React App component
+ * Styles for the React App components
  */
 
 #react-root {
@@ -12,7 +12,7 @@
 
 #hamburger {
   cursor: pointer;
-  font-size: 18px;
+  font-size: 20px;
   line-height: 64px;
   padding: 0 24px;
   transition: color 0.3s;
@@ -33,10 +33,10 @@
   }
 }
 
-/* Makes the header prettier */
-.ant-layout-header {
-  background: none;
-  padding: 0;
+.main-layout {
+  min-width: 300px;
+  overflow: hidden;
+  z-index: 10;
 }
 
 /* Makes the main content area prettier */
@@ -48,7 +48,11 @@
   padding: 32px;
 }
 
-/* Centers text in the footer */
-.ant-layout-footer {
+/* Centers the text in the footer */
+.main-footer {
   text-align: center;
+
+  small {
+    font-size: 12px;
+  }
 }

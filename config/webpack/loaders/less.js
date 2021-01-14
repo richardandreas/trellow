@@ -8,6 +8,8 @@ module.exports = getStyleRule(/\.less$/i, false, [
         javascriptEnabled: true,
         modifyVars: {
           "@border-radius-base": "0.25em",
+          "@layout-header-background": "none",
+          "@layout-header-padding": "0",
           "@layout-sider-background": "#174287",
           "@menu-dark-bg": "#174287",
           "@menu-dark-item-active-bg": "rgba(255, 255, 255, 0.1)",
