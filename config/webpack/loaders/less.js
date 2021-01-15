@@ -13,6 +13,8 @@ module.exports = getStyleRule(/\.less$/i, false, [
           "@layout-sider-background": "#174287",
           "@menu-dark-bg": "#174287",
           "@menu-dark-item-active-bg": "rgba(255, 255, 255, 0.1)",
+          "@menu-inline-toplevel-item-height": "56px",
+          "@menu-item-height": "56px",
           "@primary-color": "#209cee",
         },
       },
