@@ -11,7 +11,7 @@ module Api
         @user = User.find_by_email(auth_params[:email])
 
         if @user&.authenticate(auth_params[:password])
-          create_access_token(@user.id)
+          create_access_token(@user.id, remember: auth_params[:remember])
           render json: @user, except: :password_digest, status: :ok
         else
           render json: { errors: { email: [I18n.t('errors.messages.invalid_auth')] } }, status: :unprocessable_entity
@@ -25,7 +25,7 @@ module Api
       private
 
       def auth_params
-        params.permit(:email, :password)
+        params.permit(:email, :password, :remember)
       end
     end
   end
