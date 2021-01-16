@@ -150,7 +150,7 @@ en:
       greater_than_or_equal_to: must be greater than or equal to %{count}
       inclusion: is not included in the list
       invalid: is invalid
-      invalid_auth: invalid email or password
+      invalid_auth: Email or password is invalid
       less_than: must be less than %{count}
       less_than_or_equal_to: must be less than or equal to %{count}
       model_invalid: "Validation failed: %{errors}"
