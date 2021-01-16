@@ -22,7 +22,16 @@
   }
 }
 
-#logo {
+#login-logo {
+  margin: 40px 0;
+  text-align: center;
+
+  img {
+    max-width: 200px;
+  }
+}
+
+#header-logo {
   float: right;
   line-height: 64px;
   padding: 0 24px;
@@ -39,13 +48,49 @@
   z-index: 10;
 }
 
-/* Makes the main content area prettier */
+/* Styles the main content area */
 .main-content-area {
-  background: #fff;
-  border-radius: @border-radius-base;
   margin: 0 16px;
   min-height: 480px;
+}
+
+/* Styles the login and logon form areas */
+.login-form-area {
+  box-shadow: @box-shadow-base;
+  margin: 16px;
+  max-width: 390px;
+  min-height: 480px;
+
+  h1 {
+    font-size: 1.8em;
+    font-weight: bolder;
+    text-align: center;
+  }
+
+  form {
+    margin: 40px 0;
+
+    .login-form-forgot {
+      float: right;
+    }
+  }
+}
+
+.main-content-area,
+.login-form-area {
+  background: #fff;
+  border-radius: @border-radius-base;
   padding: 32px;
+}
+
+.main-login-container {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
 }
 
 /* Centers the text in the footer */

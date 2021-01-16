@@ -1,16 +1,18 @@
 import React, { useState } from "react";
 import { Layout } from "antd";
 import { MenuUnfoldOutlined, MenuFoldOutlined } from "@ant-design/icons";
-import Sidebar from "./Sidebar";
-import Footer from "./Footer";
-import ProjectView from "../views/ProjectView";
+import Sidebar from "../components/Sidebar";
+import Footer from "../components/Footer";
 
-const App = () => {
+const AppLayout = ({ children, selectedSidebarItems }) => {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(true);
 
   return (
     <Layout>
-      <Sidebar collapsed={sidebarCollapsed} />
+      <Sidebar
+        collapsed={sidebarCollapsed}
+        selectedMenuItems={selectedSidebarItems}
+      />
       <Layout className="main-layout">
         <Layout.Header>
           {React.createElement(
@@ -21,15 +23,16 @@ const App = () => {
             }
           )}
 
-          <span id="logo" className="anticon">
+          <span id="header-logo" className="anticon">
             <img src={"/assets/logo.svg"} />
           </span>
         </Layout.Header>
-        <ProjectView />
+
+        {children}
         <Footer />
       </Layout>
     </Layout>
   );
 };
 
-export default App;
+export default AppLayout;

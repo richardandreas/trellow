@@ -1,12 +1,12 @@
 import React from "react";
 import View from "../layouts/View";
 
-function ProjectView() {
+function Project() {
   return (
     <View>
-      <h1>Hello React!</h1>
+      <h1>Hello React!!</h1>
     </View>
   );
 }
 
-export default ProjectView;
+export default Project;
