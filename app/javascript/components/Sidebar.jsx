@@ -7,7 +7,7 @@ import {
   SettingOutlined,
 } from "@ant-design/icons";
 
-function Sidebar({ collapsed, selectedMenuItems }) {
+const Sidebar = ({ collapsed, selectedMenuItems }) => {
   const [collapsedWidth, setCollapsedWidth] = useState(true);
 
   return (
@@ -36,6 +36,6 @@ function Sidebar({ collapsed, selectedMenuItems }) {
       </Menu>
     </Layout.Sider>
   );
-}
+};
 
 export default Sidebar;

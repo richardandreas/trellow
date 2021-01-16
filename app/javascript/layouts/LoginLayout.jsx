@@ -1,7 +1,7 @@
 import React from "react";
 import { Layout } from "antd";
 
-function LoginLayout({ children }) {
+const LoginLayout = ({ children }) => {
   return (
     <Layout>
       <div className="main-login-container">
@@ -15,6 +15,6 @@ function LoginLayout({ children }) {
       </div>
     </Layout>
   );
-}
+};
 
 export default LoginLayout;

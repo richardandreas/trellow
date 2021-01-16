@@ -7,6 +7,7 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import App from "../pages/App";
 import Login from "../pages/Login";
 import Logon from "../pages/Logon";
+import Logout from "../pages/Logout";
 import "../../assets/stylesheets/react_index.less";
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -16,6 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <Switch>
           <Route exact path="/login" component={Login} />
           <Route exact path="/logon" component={Logon} />
+          <Route exact path="/logout" component={Logout} />
           <Route component={App} />
         </Switch>
       </BrowserRouter>

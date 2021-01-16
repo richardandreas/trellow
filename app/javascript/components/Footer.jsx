@@ -1,7 +1,7 @@
 import React from "react";
 import { Layout } from "antd";
 
-function Footer() {
+const Footer = () => {
   return (
     <Layout.Footer className="main-footer">
       <small>
@@ -16,6 +16,6 @@ function Footer() {
       </small>
     </Layout.Footer>
   );
-}
+};
 
 export default Footer;
