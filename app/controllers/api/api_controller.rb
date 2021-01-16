@@ -5,7 +5,7 @@ module Api
   class ApiController < ActionController::Base
     attr_reader :current_user
 
-    skip_before_action :verify_authenticity_token
+    skip_before_action :verify_authenticity_token # TODO: Remove this before online deployment
 
     before_action :authenticate
 

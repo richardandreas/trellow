@@ -6,9 +6,14 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'hello_react' %>
+    <%= stylesheet_link_tag 'application' %>
+    <%= javascript_pack_tag 'application' %>
+
+    <!-- Token for json/xml requests -->
+    <%= javascript_tag "window._token = '#{form_authenticity_token}'" %>
+
+    <!-- Initializes React Application -->
+    <%= javascript_pack_tag 'react_index' %>
   </head>
 
   <body>
