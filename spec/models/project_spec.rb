@@ -15,6 +15,10 @@ RSpec.describe Project, type: :model do
     it { is_expected.to validate_presence_of(:name) }
   end
 
+  describe 'uniqueness validations' do
+    it { expect(valid_project).to validate_uniqueness_of(:name).scoped_to(:user_id) }
+  end
+
   describe 'length validations' do
     it { is_expected.to validate_length_of(:name).is_at_most(45) }
     it { is_expected.to validate_length_of(:name).is_at_least(3) }

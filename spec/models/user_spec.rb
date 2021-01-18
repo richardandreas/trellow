@@ -18,6 +18,10 @@ RSpec.describe User, type: :model do
     it { is_expected.to validate_presence_of(:password) }
   end
 
+  describe 'uniqueness validations' do
+    it { expect(valid_user).to validate_uniqueness_of(:username) }
+  end
+
   describe 'length validations' do
     it { is_expected.to validate_length_of(:username).is_at_most(45) }
     it { is_expected.to validate_length_of(:username).is_at_least(6) }
