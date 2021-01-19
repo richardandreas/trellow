@@ -4,9 +4,10 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       post :auth, to: 'auth#login'
-      get :auth, to: 'auth#user'
+      get :auth, to: 'auth#session'
 
       resources :users
+      resources :email_verifications, only: :show
 
       resources :projects do
         resources :sprints
