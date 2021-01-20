@@ -7,8 +7,6 @@ RSpec.describe '/api/auth', type: :request do
   let(:response_data)    { JSON.parse(response.body).deep_symbolize_keys }
 
   describe 'POST /api/auth' do
-    before { skip_email_verification }
-
     it 'authenticates successfully' do
       user = User.create! valid_attributes
       post api_v1_auth_url, params: valid_attributes.slice(:email, :password), as: :json

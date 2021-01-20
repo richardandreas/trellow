@@ -5,14 +5,25 @@ module Api
     # Controller responsible for verifying user emails
     class EmailVerificationsController < ApiController
       skip_before_action :authenticate, only: :login
+      before_action :set_email_verification, only: :show
 
       # GET /api/v1/email_verification/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa.json
       def show
-        @email_verification = EmailVerification.find(params[:id])
-        #TODO: Update email once the new email is stored in EmailVerification
-        @email_verification.user.update_attribute(:email_verified_at, Time.now)
+        if @email_verification.valid?
+          new_attributes = { email_verified_at: Time.now }
+          new_attributes.merge(email: @email_verification.new_email) if @email_verification.new_email
+          @email_verification.user.update_attributes(new_attributes)
+          head :ok
+        else
+          render json: { errors: @email_verification.errors }, status: :unprocessable_entity
+        end
+
         @email_verification.destroy
-        head :ok
+      end
+
+      # Use callbacks to share common setup or constraints between actions.
+      def set_email_verification
+        @email_verification = EmailVerification.find(params[:id])
       end
     end
   end

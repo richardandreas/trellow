@@ -8,11 +8,16 @@
 #   password:              String
 #   password_confirmation: String
 #
+# Methods
+#   authenticate           Boolean
+#
 class User < ApplicationRecord
+  scope :all_active, -> { where.not(email_verified_at: nil) }
+
   auto_strip_attributes :username, squish: true
   auto_strip_attributes :email
 
-  has_one :email_verification, dependent: :destroy
+  has_one :email_verification, autosave: true, dependent: :destroy
   has_many :projects, dependent: :destroy
   has_many :sprints, through: :projects
 
@@ -32,21 +37,20 @@ class User < ApplicationRecord
             presence: { on: create },
             length: { minimum: 6 }, if: :password_digest_changed?
 
-  after_save :send_email_verification
+  before_save :create_email_verification
 
   has_secure_password
 
-  def email_verified?
-    email_verified_at.present?
-  end
-
   private
 
-  def send_email_verification
-    return unless saved_change_to_email?
+  def create_email_verification
+    return unless email_changed?
 
-    EmailVerification.create(user: self)
-    # TODO: Remove line below once the new email is stored in EmailVerification
-    update_attribute(:email_verified_at, nil)
+    if email_was.nil?
+      self.email_verification = EmailVerification.new(user: self)
+    else
+      self.email_verification = EmailVerification.new(user: self, new_email: email)
+      self.email              = email_was
+    end
   end
 end

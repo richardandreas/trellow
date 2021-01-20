@@ -13,9 +13,4 @@ module Helpers
   def skip_token_auth
     allow_any_instance_of(Api::ApiController).to receive(:authenticate).and_return(true)
   end
-
-  # TODO: Remove once not needed
-  def skip_email_verification
-    allow_any_instance_of(User).to receive(:email_verified?).and_return(true)
-  end
 end

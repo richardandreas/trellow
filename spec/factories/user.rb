@@ -20,4 +20,8 @@ FactoryBot.define do
   trait :with_unequal_passwords do
     password_confirmation { Faker::Internet.password }
   end
+
+  trait :email_not_verified do
+    email_verified_at { nil }
+  end
 end

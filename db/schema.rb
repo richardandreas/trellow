@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 2021_01_18_214619) do
 
   create_table "email_verifications", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.bigint "user_id", null: false
+    t.string "new_email", limit: 90
     t.datetime "created_at"
     t.index ["user_id"], name: "index_email_verifications_on_user_id"
   end

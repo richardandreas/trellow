@@ -7,7 +7,7 @@ class CreateEmailVerifications < ActiveRecord::Migration[6.1]
 
     create_table :email_verifications, id: :uuid do |t|
       t.references :user, null: false, foreign_key: true
-      # TODO: Add new_email column for user email update
+      t.string :new_email, limit: 90
 
       t.datetime :created_at
     end
