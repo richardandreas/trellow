@@ -23,7 +23,7 @@ class EmailVerification < ApplicationRecord
   def confirm
     return false unless valid?
 
-    new_user_attributes = new_email.present? ? { email: new_email} : {}
+    new_user_attributes = new_email.present? ? { email: new_email } : {}
     user.update_columns(new_user_attributes.merge(email_verified_at: Time.now))
 
     destroy

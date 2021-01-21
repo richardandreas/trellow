@@ -27,6 +27,21 @@ export const authenticateUser = (data) => {
   });
 };
 
+// Create user
+//
+// Paramerets
+//   email:                 String
+//   password:              String
+//   password_confirmation: String
+//
+export const createUser = (data) => {
+  return new Promise((resolve, reject) => {
+    makeRequest("post", "/api/v1/users", data)
+      .then((response) => resolve(response))
+      .catch((error) => reject(error));
+  });
+};
+
 // General request method
 export const makeRequest = (method, url, data, skipMessage = false) => {
   return new Promise((resolve, reject) => {
