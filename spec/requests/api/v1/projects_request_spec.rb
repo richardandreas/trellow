@@ -45,7 +45,7 @@ RSpec.describe '/api/v1/projects', type: :request do
 
   describe 'PATCH /update' do
     context 'with valid parameters' do
-      let(:new_attributes) { valid_attributes }
+      let(:new_attributes) { attributes_for(:project) }
 
       it 'updates the requested project' do
         project = Project.create! valid_attributes

@@ -21,7 +21,7 @@ FactoryBot.define do
     password_confirmation { Faker::Internet.password }
   end
 
-  trait :email_not_verified do
+  trait :with_unverified_email do
     email_verified_at { nil }
   end
 end

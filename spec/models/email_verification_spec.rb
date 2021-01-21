@@ -23,4 +23,19 @@ RSpec.describe EmailVerification, type: :model do
       expect(email_verification).to have(1).errors_on(:new_email)
     end
   end
+
+  describe 'confirm' do
+    it 'sets email_verified_at attribute in user' do
+      new_user = create(:user, :with_unverified_email)
+      expect do
+        new_user.email_verification.confirm
+      end.to change { new_user.email_verified_at }.from(NilClass).to(Time)
+    end
+
+    it 'updates users email' do
+      expect do
+        valid_email_verification.confirm
+      end.to change { valid_email_verification.user.email }.to(valid_email_verification.new_email)
+    end
+  end
 end

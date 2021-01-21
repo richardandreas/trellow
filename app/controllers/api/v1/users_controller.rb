@@ -4,6 +4,7 @@ module Api
   module V1
     # Controller responsible for managing application users
     class UsersController < ApiController
+      skip_before_action :authenticate, only: :create
       before_action :set_user, only: %i[show update destroy]
 
       # GET /api/v1/users.json

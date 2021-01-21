@@ -34,8 +34,11 @@ class User < ApplicationRecord
             format: { with: URI::MailTo::EMAIL_REGEXP }
 
   validates :password,
-            presence: { on: create },
+            presence: true,
             length: { minimum: 6 }, if: :password_digest_changed?
+
+  validates :password_confirmation,
+            presence: true, if: :password_digest_changed?
 
   before_save :create_email_verification
 
