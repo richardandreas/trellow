@@ -15,8 +15,13 @@ export const getHeaders = () => {
   };
 };
 
+// Checks whether a session token exists or not in the local storage
+export const sessionTokenExists = () => {
+  return getHeaders()["access-token"] != null;
+};
+
 // Clears users session token
-export const destroySession = () => {
+export const destroySessionToken = () => {
   window.localStorage.removeItem("access-token");
 };
 

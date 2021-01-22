@@ -5,7 +5,7 @@ import { message } from "antd";
 import { getHeaders, setHeaders } from "../helpers/app";
 
 // Get user data or check if session is active
-export const getUser = () => {
+export const getSession = () => {
   return new Promise((resolve, reject) => {
     makeRequest("get", "/api/v1/auth", null, true)
       .then((response) => resolve(response))

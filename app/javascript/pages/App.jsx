@@ -3,7 +3,7 @@ import AppLayout from "../layouts/AppLayout";
 import Project from "../views/Project";
 import PageLoader from "../components/PageLoader";
 import { Redirect } from "react-router-dom";
-import { getUser } from "../helpers/request";
+import { getSession } from "../helpers/request";
 
 const App = () => {
   const [loading, setLoading] = useState(true);
@@ -11,10 +11,10 @@ const App = () => {
 
   useEffect(() => {
     // Redirect to login page if there is no session token or users session is expired
-    getUser()
+    getSession()
       .then(() => setLoading(false))
       .catch(() => setRedirect("/login"));
-  });
+  }, []);
 
   return (
     <>
