@@ -43,7 +43,7 @@ export const createUser = (data) => {
 };
 
 // General request method
-export const makeRequest = (method, url, data, skipMessage = false) => {
+export const makeRequest = (method, url, data = null, skipMessage = false) => {
   return new Promise((resolve, reject) => {
     axios({
       method: method,

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import LoginLayout from "../layouts/LoginLayout";
 import { Link, Redirect } from "react-router-dom";
-import { Form, Input, Button, Tooltip } from "antd";
+import { Form, Input, Button, Tooltip, message } from "antd";
 import {
   UserOutlined,
   LockOutlined,
@@ -20,7 +20,10 @@ const Logon = () => {
     setFormLoading(true);
 
     createUser(data)
-      .then(() => setRedirect("/login"))
+      .then(() => {
+        message.success("An confirmation email has been sent to you!");
+        setRedirect("/login");
+      })
       .catch((errors) => form.setFields(mapErrors(errors)))
       .finally(() => setFormLoading(false));
   };
