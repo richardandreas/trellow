@@ -1,0 +1,3 @@
+MAILER_DEFAULT_HOST: "localhost:3000"
+MAILER_PASSWORD: "mailer_password_here"
+MAILER_USERNAME: "mailer_email_here"

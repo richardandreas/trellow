@@ -5,7 +5,7 @@ import { Link, Redirect } from "react-router-dom";
 import { Form, Input, Button, Checkbox } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import { getSession } from "../helpers/request";
-import { authenticateUser } from "../helpers/request";
+import { loginUser } from "../helpers/request";
 import {
   sessionTokenExists,
   destroySessionToken,
@@ -21,7 +21,7 @@ const Login = () => {
   const submit = (data) => {
     setFormLoading(true);
 
-    authenticateUser(data)
+    loginUser(data)
       .then(() => setRedirect("/projects"))
       .catch((errors) => form.setFields(mapErrors(errors)))
       .finally(() => setFormLoading(false));

@@ -9,7 +9,6 @@ const Logout = () => {
 
   useEffect(() => {
     if (data != null) {
-      window.tete = data;
       message.success("Your account has been successfully activated!");
     }
   }, [data]);

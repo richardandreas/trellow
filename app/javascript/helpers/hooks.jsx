@@ -12,7 +12,7 @@ export const useApiV1Data = () => {
 
   useEffect(() => {
     makeRequest("get", `/api/v1${location.pathname}`)
-      .then((response) => setData(response))
+      .then((response) => setData(response.data))
       .finally(() => setLoading(false));
   }, [location]);
 

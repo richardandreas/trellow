@@ -19,7 +19,7 @@ export const getSession = () => {
 //   email:    String
 //   password: String
 //
-export const authenticateUser = (data) => {
+export const loginUser = (data) => {
   return new Promise((resolve, reject) => {
     makeRequest("post", "/api/v1/auth", data)
       .then((response) => resolve(response))
@@ -43,7 +43,7 @@ export const createUser = (data) => {
 };
 
 // General request method
-export const makeRequest = (method, url, data = null, skipMessage = false) => {
+export const makeRequest = (method, url, data = null) => {
   return new Promise((resolve, reject) => {
     axios({
       method: method,
@@ -60,7 +60,7 @@ export const makeRequest = (method, url, data = null, skipMessage = false) => {
           return reject(error.response.data["errors"]);
         }
 
-        if (!skipMessage) {
+        if (method != "get") {
           message.error("Ops! There was an error");
         }
 
