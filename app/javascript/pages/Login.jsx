@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import LoginLayout from "../layouts/LoginLayout";
 import PageLoader from "../components/PageLoader";
-import { Link, Redirect } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import { Form, Input, Button, Checkbox } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import { getSession } from "../helpers/request";
@@ -15,14 +15,14 @@ import {
 const Login = () => {
   const [pageLoading, setPageLoading] = useState(sessionTokenExists());
   const [formLoading, setFormLoading] = useState(false);
-  const [redirect, setRedirect] = useState("");
   const [form] = Form.useForm();
+  const history = useHistory();
 
   const submit = (data) => {
     setFormLoading(true);
 
     loginUser(data)
-      .then(() => setRedirect("/projects"))
+      .then(() => history.push("/projects"))
       .catch((errors) => form.setFields(mapErrors(errors)))
       .finally(() => setFormLoading(false));
   };
@@ -34,7 +34,7 @@ const Login = () => {
 
     // Redirect to projects page if user already has an active session
     getSession()
-      .then(() => setRedirect("/projects"))
+      .then(() => history.push("/projects"))
       .catch(() => {
         destroySessionToken();
         setPageLoading(false);
@@ -43,8 +43,6 @@ const Login = () => {
 
   return (
     <>
-      {redirect && <Redirect to={redirect} />}
-
       {pageLoading ? (
         <PageLoader />
       ) : (

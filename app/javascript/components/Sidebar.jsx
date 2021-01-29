@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useHistory, useLocation } from "react-router-dom";
 import { Layout, Menu } from "antd";
 import {
   AppstoreOutlined,
@@ -9,6 +10,8 @@ import {
 
 const Sidebar = ({ collapsed, selectedMenuItems }) => {
   const [collapsedWidth, setCollapsedWidth] = useState(true);
+  const history = useHistory();
+  const location = useLocation();
 
   return (
     <Layout.Sider
@@ -20,17 +23,22 @@ const Sidebar = ({ collapsed, selectedMenuItems }) => {
       trigger={null}
     >
       <div style={{ height: 64 }} />
-      <Menu theme="dark" mode="inline" defaultSelectedKeys={selectedMenuItems}>
-        <Menu.Item key="1" icon={<AppstoreOutlined />}>
+      <Menu
+        onClick={({ key }) => history.push(key)}
+        defaultSelectedKeys={location.pathname}
+        theme="dark"
+        mode="inline"
+      >
+        <Menu.Item key="/projects" icon={<AppstoreOutlined />}>
           Projects
         </Menu.Item>
-        <Menu.Item key="2" icon={<ProjectOutlined />}>
+        <Menu.Item key="/sprints" icon={<ProjectOutlined />}>
           Sprints
         </Menu.Item>
-        <Menu.Item key="3" icon={<FundProjectionScreenOutlined />}>
+        <Menu.Item key="/statistics" icon={<FundProjectionScreenOutlined />}>
           Statistics
         </Menu.Item>
-        <Menu.Item key="4" icon={<SettingOutlined />}>
+        <Menu.Item key="/settings" icon={<SettingOutlined />}>
           Settings
         </Menu.Item>
       </Menu>

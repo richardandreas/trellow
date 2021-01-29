@@ -3,12 +3,12 @@
 
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
 import App from "../pages/App";
 import Login from "../pages/Login";
 import Logon from "../pages/Logon";
 import Logout from "../pages/Logout";
 import EmailVerification from "../pages/EmailVerification";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 import "../../assets/stylesheets/react_index.less";
 
 document.addEventListener("DOMContentLoaded", () => {
