@@ -8,7 +8,7 @@ import {
   SettingOutlined,
 } from "@ant-design/icons";
 
-const Sidebar = ({ collapsed, selectedMenuItems }) => {
+const Sidebar = ({ collapsed }) => {
   const [collapsedWidth, setCollapsedWidth] = useState(true);
   const history = useHistory();
   const location = useLocation();

@@ -4,15 +4,12 @@ import { MenuUnfoldOutlined, MenuFoldOutlined } from "@ant-design/icons";
 import Sidebar from "../components/Sidebar";
 import Footer from "../components/Footer";
 
-const AppLayout = ({ children, selectedSidebarItems }) => {
+const AppLayout = ({ children }) => {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(true);
 
   return (
     <Layout>
-      <Sidebar
-        collapsed={sidebarCollapsed}
-        selectedMenuItems={selectedSidebarItems}
-      />
+      <Sidebar collapsed={sidebarCollapsed} />
       <Layout className="main-layout">
         <Layout.Header>
           {React.createElement(
