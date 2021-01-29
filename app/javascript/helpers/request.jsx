@@ -5,7 +5,7 @@ import { message } from "antd";
 import { getHeaders, setHeaders } from "../helpers/app";
 
 // Get user data or check if session is active
-export const getUser = () => {
+export const getSession = () => {
   return new Promise((resolve, reject) => {
     makeRequest("get", "/api/v1/auth", null, true)
       .then((response) => resolve(response))
@@ -27,8 +27,23 @@ export const authenticateUser = (data) => {
   });
 };
 
+// Create user
+//
+// Paramerets
+//   email:                 String
+//   password:              String
+//   password_confirmation: String
+//
+export const createUser = (data) => {
+  return new Promise((resolve, reject) => {
+    makeRequest("post", "/api/v1/users", data)
+      .then((response) => resolve(response))
+      .catch((error) => reject(error));
+  });
+};
+
 // General request method
-export const makeRequest = (method, url, data, skipMessage = false) => {
+export const makeRequest = (method, url, data = null, skipMessage = false) => {
   return new Promise((resolve, reject) => {
     axios({
       method: method,

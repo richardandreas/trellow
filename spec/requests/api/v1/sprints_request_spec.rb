@@ -45,7 +45,7 @@ RSpec.describe '/api/v1/projects/1/sprints', type: :request do
 
   describe 'PATCH /update' do
     context 'with valid parameters' do
-      let(:new_attributes) { valid_attributes }
+      let(:new_attributes) { attributes_for(:sprint) }
 
       it 'updates the requested sprint' do
         sprint = Sprint.create! valid_attributes

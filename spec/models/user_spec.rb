@@ -18,6 +18,10 @@ RSpec.describe User, type: :model do
     it { is_expected.to validate_presence_of(:password) }
   end
 
+  describe 'uniqueness validations' do
+    it { expect(valid_user).to validate_uniqueness_of(:username) }
+  end
+
   describe 'length validations' do
     it { is_expected.to validate_length_of(:username).is_at_most(45) }
     it { is_expected.to validate_length_of(:username).is_at_least(6) }
@@ -43,6 +47,23 @@ RSpec.describe User, type: :model do
       user = described_class.new(**attributes_for(:user), username: '  email@email.com  ')
       user.validate
       expect(user.username).to eq('email@email.com')
+    end
+  end
+
+  describe 'create_email_verification' do
+    it { expect { valid_user.save }.to change(EmailVerification, :count).by(1) }
+    it { expect { with_invalid_username.save }.to change(EmailVerification, :count).by(0) }
+
+    it 'creates email verification when email is updated' do
+      user = valid_user
+      user.save
+      expect { user.update(email: 'new.email@trellow.com') }.to change(EmailVerification, :count).by(1)
+    end
+
+    it 'does not create email verification when username is updated' do
+      user = valid_user
+      user.save
+      expect { user.update(username: 'Fellow Trellow User') }.to change(EmailVerification, :count).by(0)
     end
   end
 end

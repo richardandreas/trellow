@@ -6,6 +6,7 @@ FactoryBot.define do
     email                 { Faker::Internet.email }
     password              { Faker::Internet.password }
     password_confirmation { password }
+    email_verified_at     { Faker::Time.forward(days: 7) }
   end
 
   trait :with_invalid_username do
@@ -18,5 +19,9 @@ FactoryBot.define do
 
   trait :with_unequal_passwords do
     password_confirmation { Faker::Internet.password }
+  end
+
+  trait :with_unverified_email do
+    email_verified_at { nil }
   end
 end

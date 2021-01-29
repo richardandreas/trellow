@@ -8,7 +8,7 @@ module Api
 
       # POST /api/v1/auth.json
       def login
-        @user = User.find_by_email(auth_params[:email])
+        @user = User.all_active.find_by_email(auth_params[:email])
 
         if @user&.authenticate(auth_params[:password])
           create_access_token(@user.id, remember: auth_params[:remember])
@@ -18,12 +18,13 @@ module Api
         end
       end
 
-      def user
+      def session
         render json: current_user, except: :password_digest, status: :ok
       end
 
       private
 
+      # Only allow a list of trusted parameters through.
       def auth_params
         params.permit(:email, :password, :remember)
       end
