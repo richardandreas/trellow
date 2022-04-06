@@ -12,10 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2021_01_09_005816) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
-  create_table "projects", force: :cascade do |t|
+  create_table "projects", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "name", limit: 45, null: false
     t.text "description"
@@ -25,7 +22,7 @@ ActiveRecord::Schema.define(version: 2021_01_09_005816) do
     t.index ["user_id"], name: "index_projects_on_user_id"
   end
 
-  create_table "sprints", force: :cascade do |t|
+  create_table "sprints", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "project_id", null: false
     t.date "start_date"
     t.date "due_date"
@@ -34,7 +31,7 @@ ActiveRecord::Schema.define(version: 2021_01_09_005816) do
     t.index ["project_id"], name: "index_sprints_on_project_id"
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", charset: "utf8mb4", force: :cascade do |t|
     t.string "username", limit: 45, null: false
     t.string "email", limit: 90, null: false
     t.string "password_digest", null: false
