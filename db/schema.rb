@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_09_005816) do
+ActiveRecord::Schema.define(version: 2021_01_18_214619) do
+
+  create_table "email_verifications", charset: "utf8mb4", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "uuid", limit: 32, null: false
+    t.string "new_email", limit: 90
+    t.datetime "created_at"
+    t.index ["user_id"], name: "index_email_verifications_on_user_id"
+    t.index ["uuid"], name: "index_email_verifications_on_uuid"
+  end
 
   create_table "projects", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -35,12 +44,14 @@ ActiveRecord::Schema.define(version: 2021_01_09_005816) do
     t.string "username", limit: 45, null: false
     t.string "email", limit: 90, null: false
     t.string "password_digest", null: false
+    t.datetime "email_verified_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  add_foreign_key "email_verifications", "users"
   add_foreign_key "projects", "users"
   add_foreign_key "sprints", "projects"
 end

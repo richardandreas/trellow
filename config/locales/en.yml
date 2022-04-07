@@ -244,3 +244,6 @@ en:
       long: "%B %d, %Y %H:%M"
       short: "%d %b %H:%M"
     pm: pm
+  mailer:
+    email_verification:
+      subject: "Trellow | Activate your account"

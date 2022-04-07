@@ -1,9 +1,9 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
-import { destroySession } from "../helpers/app";
+import { destroySessionToken } from "../helpers/app";
 
 const Logout = () => {
-  destroySession();
+  destroySessionToken();
 
   return <Redirect to="/login" />;
 };

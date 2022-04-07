@@ -3,8 +3,9 @@
 require 'rails_helper'
 
 RSpec.describe '/api/v1/users', type: :request do
-  let(:valid_attributes)   { attributes_for(:user) }
-  let(:invalid_attributes) { attributes_for(:user, :with_invalid_username) }
+  let(:valid_attributes)            { attributes_for(:user) }
+  let(:invalid_attributes)          { attributes_for(:user, :with_invalid_username) }
+  let(:unverified_email_attributes) { attributes_for(:user, :with_unverified_email) }
 
   before { skip_token_auth }
 
@@ -40,19 +41,34 @@ RSpec.describe '/api/v1/users', type: :request do
         end.to change(User, :count).by(0)
       end
     end
+
+    context 'pending email confirmation' do
+      it 'creates a EmailVerification' do
+        expect do
+          post api_v1_users_url, params: unverified_email_attributes, as: :json
+        end.to change(EmailVerification, :count).by(1)
+      end
+    end
   end
 
   describe 'PATCH /update' do
     context 'with valid parameters' do
-      let(:new_attributes) { valid_attributes }
+      let(:new_attributes) { attributes_for(:user) }
 
       it 'updates the requested user' do
         user = User.create! valid_attributes
         patch api_v1_user_url(user), params: new_attributes, as: :json
         user.reload
         expect(user.username).to eq(new_attributes[:username])
-        expect(user.email).to eq(new_attributes[:email])
-        expect(user.password).to eq(new_attributes[:password])
+        expect(user.email).not_to eq(new_attributes[:email])
+        expect(user.authenticate(new_attributes[:password])).to be_truthy
+      end
+
+      it 'creates a EmailVerification when email changed' do
+        user = User.create! valid_attributes
+        expect do
+          patch api_v1_user_url(user), params: new_attributes, as: :json
+        end.to change(EmailVerification, :count).by(1)
       end
     end
 

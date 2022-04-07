@@ -1,15 +1,19 @@
 import React, { useState, useEffect } from "react";
 import LoginLayout from "../layouts/LoginLayout";
 import PageLoader from "../components/PageLoader";
-import { Redirect } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { Form, Input, Button, Checkbox } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
-import { getUser } from "../helpers/request";
+import { getSession } from "../helpers/request";
 import { authenticateUser } from "../helpers/request";
-import { mapErrors } from "../helpers/app";
+import {
+  sessionTokenExists,
+  destroySessionToken,
+  mapErrors,
+} from "../helpers/app";
 
 const Login = () => {
-  const [pageLoading, setPageLoading] = useState(true);
+  const [pageLoading, setPageLoading] = useState(sessionTokenExists());
   const [formLoading, setFormLoading] = useState(false);
   const [redirect, setRedirect] = useState("");
   const [form] = Form.useForm();
@@ -24,11 +28,18 @@ const Login = () => {
   };
 
   useEffect(() => {
+    if (!pageLoading) {
+      return;
+    }
+
     // Redirect to projects page if user already has an active session
-    getUser()
+    getSession()
       .then(() => setRedirect("/projects"))
-      .catch(() => setPageLoading(false));
-  });
+      .catch(() => {
+        destroySessionToken();
+        setPageLoading(false);
+      });
+  }, []);
 
   return (
     <>
@@ -92,9 +103,11 @@ const Login = () => {
               </Button>
             </Form.Item>
             <Form.Item>
-              <Button block type="default" className="login-form-button">
-                Register now
-              </Button>
+              <Link to="/logon">
+                <Button block type="default" className="login-form-button">
+                  Register now
+                </Button>
+              </Link>
             </Form.Item>
           </Form>
         </LoginLayout>

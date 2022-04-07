@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body style="font-family: arial, sans-serif;">
+    <h4>Hello <%= @email_verification.user.username %>!</h4>
+    <p>Thank you so much for having subscribed to Trellow!<br>
+    <br>
+    <p>You are almost done creating your account. Now, all you need to do is click on the link below to activate your
+       account and stars enjoying Trellow!</p>
+    <br/ >
+    <a href="<%= "#{root_url}email_verifications/#{@email_verification.id}" %>">
+      Activate your account now!
+    </a>
+    <br/ >
+    <br/ >
+    <p>Regards,</p>
+    <p>Richard Andreas<br/ >
+       From Trellow<br/ ></p>
+    <p>Visit my GitHub: <a href="https://github.com/richardandreas">richardandreas</a></p>
+  </body>
+</html>

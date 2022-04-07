@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :sprint do
     project_id { Project.last&.id || create(:project).id }

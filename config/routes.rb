@@ -1,12 +1,14 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   namespace :api do
     namespace :v1 do
       post :auth, to: 'auth#login'
-      get :auth, to: 'auth#user'
+      get :auth, to: 'auth#session'
 
       resources :users
+      resources :email_verifications, only: :show
 
       resources :projects do
         resources :sprints
@@ -16,5 +18,4 @@ Rails.application.routes.draw do
 
   root 'home#index'
   get '*path', to: 'home#index'
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
