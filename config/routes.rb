@@ -8,7 +8,7 @@ Rails.application.routes.draw do
       get :auth, to: 'auth#session'
 
       resources :users
-      resources :email_verifications, only: :show
+      resources :email_verifications, param: :uuid, only: :show
 
       resources :projects do
         resources :sprints
