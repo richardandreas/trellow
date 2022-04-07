@@ -11,7 +11,7 @@
 #
 class EmailVerification < ApplicationRecord
   after_initialize do |email_verification|
-    email_verification.uuid = SecureRandom.hex(32)
+    email_verification.uuid ||= SecureRandom.hex(32)
   end
 
   belongs_to :user
