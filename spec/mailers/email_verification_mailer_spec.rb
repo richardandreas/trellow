@@ -12,7 +12,7 @@ RSpec.describe EmailVerificationMailer, type: :mailer do
     end
 
     it 'assigns @confirmation_url' do
-      expect(mail.body.encoded).to match("#{root_url}email_verification/#{email_verification.id}")
+      expect(mail.body.encoded).to include("#{root_url}email_verifications/#{email_verification.uuid}")
     end
   end
 end

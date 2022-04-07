@@ -20,7 +20,7 @@ module Api
 
       # Use callbacks to share common setup or constraints between actions.
       def set_email_verification
-        @email_verification = EmailVerification.find(params[:id])
+        @email_verification = EmailVerification.find_by!(uuid: params[:uuid])
       end
     end
   end

@@ -16,7 +16,7 @@ RSpec.describe Project, type: :model do
   end
 
   describe 'uniqueness validations' do
-    it { expect(valid_project).to validate_uniqueness_of(:name).scoped_to(:user_id) }
+    it { expect(valid_project).to validate_uniqueness_of(:name).case_insensitive.scoped_to(:user_id) }
   end
 
   describe 'length validations' do

@@ -8,6 +8,8 @@ RSpec.describe EmailVerification, type: :model do
 
   describe 'valid email_verification' do
     it { expect(valid_email_verification).to be_valid }
+    it { expect(valid_email_verification.uuid).to be_kind_of(String) }
+    it { expect(valid_email_verification.uuid).to have(64).characters }
   end
 
   describe 'presence validations' do

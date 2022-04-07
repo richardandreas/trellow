@@ -19,7 +19,7 @@ RSpec.describe User, type: :model do
   end
 
   describe 'uniqueness validations' do
-    it { expect(valid_user).to validate_uniqueness_of(:username) }
+    it { expect(valid_user).to validate_uniqueness_of(:username).case_insensitive }
   end
 
   describe 'length validations' do

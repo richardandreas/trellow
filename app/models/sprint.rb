@@ -12,7 +12,7 @@ class Sprint < ApplicationRecord
   has_one :user, through: :project
 
   validates :start_date,
-            range: { on_or_after: ->(record) { record.start_date_was || Date.today } }
+            range: { on_or_after: ->(_record) { Date.today } }
 
   validates :due_date,
             range: { on_or_after: ->(record) { record.start_date } }

@@ -10,6 +10,10 @@
 #   confirm:   Boolean
 #
 class EmailVerification < ApplicationRecord
+  after_initialize do |email_verification|
+    email_verification.uuid = SecureRandom.hex(32)
+  end
+
   belongs_to :user
 
   validates :new_email,
@@ -19,6 +23,11 @@ class EmailVerification < ApplicationRecord
   validate :new_email_is_unique
 
   after_create :send_email_verification
+
+  # overridden
+  def to_param
+    uuid
+  end
 
   def confirm
     return false unless valid?
